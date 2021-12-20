@@ -1,35 +1,51 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, {Component} from 'react';
+import { Container, Form, Nav, Button } from 'react-bootstrap';
 
 class Loginbox extends Component {
-    construktor() {
+    constructor() {
+        super();
         this.state = {
             isShown: true
         }
+        this.years = [];
+        for (var i = 2021; i >= 1900; i--){
+            this.years[2021-i] = i;
+        }
+        console.log(this.years);
     }
 
     render() {
         return(
-            <form style={styles.container}>
-                <div className="form-group row" style={{marginTop:'20px'}}>
-                    <label htmlFor="text" className="col-4 col-form-label" style={{color:'white'}}>Nazwa lub E-mail</label> 
-                    <div className="col-7">
-                        <input id="text" name="text" type="text" className="form-control" />
+            <div class="container" style={styles.container}>
+                <div class="row">
+                    <div className="col-sm-12">
+                        <Form>
+                            <h2 className="white-text text-center">Wyszukiwarka</h2>
+                            <Form.Group className="mb-3" controlId="formGroupEmail">
+                                <Form.Label className="white-text">Tytuł</Form.Label>
+                                <Form.Control type="text" placeholder="Wpisz tytuł" />
+                            </Form.Group>
+                            <Form.Group className="mb-3" controlId="formGroupPassword">
+                                <Form.Label className="white-text">Rok produkcji</Form.Label>
+                                <Form.Select>
+                                    {this.years.map((item, i) => {
+                                        console.log(item);
+                                        return (
+                                            <option key={2021 - i}>{item}</option>
+                                        );
+                                    })}
+                                </Form.Select>
+                            </Form.Group>
+                            <div className="btn-signup mt-4">
+                                <Nav.Link href="/" className="btn-signup-color">
+                                    <Button variant="primary" type="submit">Wyszukiwanie</Button>
+                                </Nav.Link>
+                            </div>
+                        </Form>
                     </div>
                 </div>
-                <div className="form-group row">
-                    <label htmlFor="text1" className="col-4 col-form-label" style={{color:'white'}}>Hasło</label> 
-                    <div className="col-7">
-                        <input id="text1" name="text1" type="text" className="form-control" />
-                    </div>
-                </div> 
-                <div className="form-group row">
-                    <div className="offset-3 col-8">
-                        <button name="submit" type="submit" className="btn btn-primary" style={{marginTop:'20px'}}>Zaloguj</button>
-                        <button name="submit" type="submit" className="btn btn-primary" style={{marginTop:'20px'}}>Zarejestruj</button>
-                    </div>
-                </div>
-            </form>
+        </div>
         )
     }
 }
@@ -37,7 +53,9 @@ class Loginbox extends Component {
 var styles = {
     container: {
       padding: 24,
-      backgroundColor: "#212121"
+      backgroundColor: "#212121",
+      color: "white",
+      marginTop: "10px"
     },
     title: {
       marginTop: 16,

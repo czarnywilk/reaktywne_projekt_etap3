@@ -34,7 +34,7 @@ class Navbar extends Component {
                     </div>
                 </div>
                 <div className="row d-flex justify-content-left align-items-center">
-                    <div className="col-sm-8">
+                    <div className="col-sm-12">
                         <div className="btn-group" role="group" aria-label="Normalne przyciski" style={{width:'100%'}}>
                             <Link to="/" className="nav-link" id="pills-home-tab" data-toggle="pill" role="tab" aria-controls="pills-home" aria-selected="true" style={{width:'50%'}}>
                                 <button type="button" className="btn btn-dark" styles={styles.button} style={{opacity: '90%', width : '105%'}}>Strona główna</button>
@@ -42,20 +42,12 @@ class Navbar extends Component {
                             <Link to="/addfilm" className="nav-link" id="pills-home-tab" data-toggle="pill" role="tab" aria-controls="pills-home" aria-selected="true" style={{width:'50%'}}>
                                 <button type="button" className="btn btn-dark" styles={styles.button} style={{opacity: '90%', width : '105%'}}>Dodaj film</button>
                             </Link>
-                        </div>
-                    </div>
-                    <div className="col-sm-4" fluid={true}>
-                        <div className="search-bar-container" fluid={true}>
-                            <form action="/" method="get" style={{width:'100%', backgroundColor:'#13151', padding: 10}} >
-                                <input
-                                    type="text"
-                                    id="header-search"
-                                    placeholder="Wyszukaj film"
-                                    name="s"
-                                    style={{width:'80%'}} 
-                                />
-                                <button type="submit" style={{width:'20%'}}>Szukaj</button>
-                            </form>
+                            <Link to="/login" className="nav-link" id="pills-home-tab" data-toggle="pill" role="tab" aria-controls="pills-home" aria-selected="true" style={{width:'50%'}}>
+                                <button type="button" className="btn btn-dark" styles={styles.button} style={{opacity: '90%', width : '105%'}}>Zaloguj się</button>
+                            </Link>
+                            <Link to="/register" className="nav-link" id="pills-home-tab" data-toggle="pill" role="tab" aria-controls="pills-home" aria-selected="true" style={{width:'50%'}}>
+                                <button type="button" className="btn btn-dark" styles={styles.button} style={{opacity: '90%', width : '105%'}}>Rejestracja</button>
+                            </Link>
                         </div>
                     </div>
                 </div>

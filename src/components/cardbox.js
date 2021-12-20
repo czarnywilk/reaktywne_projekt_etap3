@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import Pagination from './pagination';
 import { paginate } from "./utils/paginate";
 import { Nav } from 'react-bootstrap';
+import Loginbox from './loginbox';
 
 class Cardbox extends Component {
     constructor() {
@@ -40,9 +41,9 @@ class Cardbox extends Component {
         const {pageSize, currentPage} = this.state;
         console.log(this.posts);
         return(
-            <div className="container">
+            <div className="container" styles={styles.container}>
                 <div className = "row">
-                    <div className = "sm-col-8">
+                    <div className = "col-sm-8">
                         <React.Fragment>
                             {this.posts.map((item, i) => {
                                 console.log(item);
@@ -54,6 +55,9 @@ class Cardbox extends Component {
                             })}
                             <Pagination itemsCount={this.films.length} pageSize={this.state.pageSize} currentPage={this.state.currentPage} onPageChange={this.handlePageChange}/>
                         </React.Fragment>
+                    </div>
+                    <div className="col-sm-4">
+                        <Loginbox />
                     </div>
                 </div>
             </div>

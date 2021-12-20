@@ -10,7 +10,7 @@ const AddFilm = (props) => {
     return (
         <div class="container" style={styles.footer}>
             <div class="row">
-                <div class="col-sm-8">
+                <div class="col-sm-12">
                     <Form>
                         <h2 className="white-text text-center">Dodaj film</h2>
                         <Form.Group className="mb-3" controlId="formGroupEmail">
@@ -55,7 +55,7 @@ var styles = {
       //position: "absolute",
       left: 0,
       bottom: 20,
-      width: "100%",
+      width: "70%",
       overflow: "hidden",
       color: "white",
       padding: 24

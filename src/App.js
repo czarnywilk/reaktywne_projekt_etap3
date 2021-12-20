@@ -8,6 +8,10 @@ import Footer from './components/footer';
 import NotFound from './components/notFound';
 import AddFilm from './components/addfilm';
 import { Switch ,Route } from 'react-router-dom';
+import Login from './components/login';
+import Register from './components/register';
+
+
 
 function App() {
 
@@ -31,7 +35,7 @@ function App() {
           </div>
         </div>
         <div className="row">
-          <div className="col-sm-8">
+          <div className="col-sm-12">
             <div className="container">
               <div className="content">
                 <Switch>
@@ -41,18 +45,20 @@ function App() {
                     component={Film}/>
                   <Route path="/addfilm"
                     component={AddFilm}/>
+                  <Route path="/login"
+                    component={Login}/>
+                  <Route path="/register"
+                    component={Register}/>
                   <Route path='*' component={NotFound} />
                 </Switch>
               </div>
             </div>
           </div>
-          <div className="col-sm-4">
-            <Loginbox />
-          </div>
+          
         </div>
         <div className="row">
           <div className="col-sm-12">
-            <Footer style={{position: "absolute", bottom: 0}}/>
+            <Footer style={{position: "relative", bottom: 0, marginTop: "100vh"}}/>
           </div>
         </div>
       </div>

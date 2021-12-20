@@ -14,11 +14,12 @@ var styles = {
 
   footer: {
     backgroundColor:"#13151f",
-    position: "sticky",
+    position: "relative",
     left: 0,
     bottom: 0,
     width: "100%",
     overflow: "hidden",
+    display: "block",
   },
 
   copyright: {

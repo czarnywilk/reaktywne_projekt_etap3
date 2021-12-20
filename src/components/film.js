@@ -60,7 +60,8 @@ class Film extends Component{
 var styles = {
     container: {
       padding: 24,
-      backgroundColor: "#212121"
+      backgroundColor: "#212121",
+      width: "70%"
     },
     title: {
       marginTop: 16,
