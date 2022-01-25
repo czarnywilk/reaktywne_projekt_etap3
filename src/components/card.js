@@ -7,13 +7,13 @@ class Card extends Component {
         super(props);
         this.state = {
             title: props.title,
-            year: props.year,
             pic: props.pic,
             desc: props.desc
         };
     }
 
     render() {
+        var text = this.state.desc.length > 250 ? this.state.desc.substring(0,250) + "..." : this.state.desc;
         return(
             <div style={styles.container}>
                 <div className = "row">
@@ -21,8 +21,8 @@ class Card extends Component {
                         <img src={this.state.pic} className="img-fluid" style={styles.image}/>
                     </div>
                     <div className = "col-sm-10">
-                        <h4>{this.state.title} ({this.state.year})</h4>
-                        <p>{this.state.desc.substring(0,250)}...</p>
+                        <h4>{this.state.title}</h4>
+                        <p>{text}</p>
                     </div>
                 </div>
             </div>

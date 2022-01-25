@@ -1,45 +1,77 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, {Component} from 'react';
 import { Container, Form, Nav, Button } from 'react-bootstrap';
+import { useHistory } from "react-router-dom";
+
+const axios = require('axios');
 
 class Loginbox extends Component {
+
+    state = {
+        film: {
+            title: ""
+        }
+    };
+
     constructor() {
         super();
-        this.state = {
-            isShown: true
-        }
-        this.years = [];
-        for (var i = 2021; i >= 1900; i--){
-            this.years[2021-i] = i;
-        }
-        console.log(this.years);
+        this.films = [];
     }
+
+    async componentDidMount() {
+        await axios.get('https://pr-movies.herokuapp.com/api/movies')
+            .then(res => {
+                const film = res.data;
+                this.films = film ;
+            });
+        this.setState(this.films);
+        console.log(this.films);
+    }
+
+    handleChange = (event) => {
+        const film = {...this.state.film};
+        film[event.currentTarget.name] = event.currentTarget.value;
+        this.setState({film});
+    };
+
+    /*handleChange = (event) => {
+        const account = {...this.state.account};
+        account[event.currentTarget.name] = event.currentTarget.value;
+        this.setState({account});
+    };*/
+
+    handleChangeRoute = (id) => {
+        this.props.fun(id);
+    }; 
+    
+    handleSubmit = (event) => {
+        event.preventDefault();
+        for (const film in this.films){
+            if (this.films[film].title === this.state.film.title){
+                console.log("dwa");                
+                this.handleChangeRoute(this.films[film].id);
+                return;
+            }
+        }
+ 
+ 
+        console.log("submit - np. zapytanie do serwera");
+    };
 
     render() {
         return(
             <div class="container" style={styles.container}>
                 <div class="row">
                     <div className="col-sm-12">
-                        <Form>
+                        <Form onSubmit={this.handleSubmit}>
                             <h2 className="white-text text-center">Wyszukiwarka</h2>
                             <Form.Group className="mb-3" controlId="formGroupEmail">
                                 <Form.Label className="white-text">Tytuł</Form.Label>
-                                <Form.Control type="text" placeholder="Wpisz tytuł" />
-                            </Form.Group>
-                            <Form.Group className="mb-3" controlId="formGroupPassword">
-                                <Form.Label className="white-text">Rok produkcji</Form.Label>
-                                <Form.Select>
-                                    {this.years.map((item, i) => {
-                                        console.log(item);
-                                        return (
-                                            <option key={2021 - i}>{item}</option>
-                                        );
-                                    })}
-                                </Form.Select>
+                                <Form.Control type="text" placeholder="Wpisz tytuł" value={this.title} onChange={this.handleChange} name="title" />
                             </Form.Group>
                             <div className="btn-signup mt-4">
                                 <Nav.Link href="/" className="btn-signup-color">
-                                    <Button variant="primary" type="submit">Wyszukiwanie</Button>
+                                    <Button variant="primary" type="submit" onClick = {this.handleSubmit}>Wyszukiwanie</Button>
                                 </Nav.Link>
                             </div>
                         </Form>
